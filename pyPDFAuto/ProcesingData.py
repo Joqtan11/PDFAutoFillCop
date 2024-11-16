@@ -1,15 +1,19 @@
 import PDFWriter as PDF
 import AsignMonth as As
-def PDF_RowSetNormal(Pdf_name, month, PreachCheck, courses, notes):
-    PDFNameImput = 'E:/Publicadores/' + Pdf_name + '.pdf'
+
+
+def PDF_RowSetNormal(root, Pdf_name, month, PreachCheck, courses, notes):
+    PDFNameImput = root + '' + Pdf_name + '.pdf'
     PDFNameoutput = 'E:/SF/' + Pdf_name + '.pdf'
-    if PreachCheck == 'No':
+    if PreachCheck.upper() == 'NO':
         PreachCheck = 'Off'
-    else:
+    elif PreachCheck.upper() == 'SI':
         PreachCheck = 'Yes' 
+    else:
+        PreachCheck = 'Off' 
     month = int(As.AsignMonth(month))
 
-    if notes != "":
+    if notes != None:
             DataFile = {
                 '901_'+ str(month) +'_CheckBox': str(PreachCheck),
                 '902_'+ str(month) +'_Text_C_SanSerif': str(courses),
@@ -22,13 +26,13 @@ def PDF_RowSetNormal(Pdf_name, month, PreachCheck, courses, notes):
             }
     PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFile)
 
-def PDF_RowSetColporter(Pdf_name, month, courses, hours, notes):
-    PDFNameImput = 'E:/Publicadores/PRECURSORES REGULARES/' + Pdf_name + '.pdf'
+def PDF_RowSetColporter(root, Pdf_name, month, courses, hours, notes):
+    PDFNameImput = root  + '' + Pdf_name + '.pdf'
     PDFNameoutput = 'E:/SF/PRECURSORES REGULARES/' + Pdf_name + '.pdf'
 
     month = int(As.AsignMonth(month))
 
-    if notes != "":
+    if notes != None:
             DataFile = {
                 '901_'+ str(month) +'_CheckBox': 'Yes',
                 '902_'+ str(month) +'_Text_C_SanSerif': str(courses),
@@ -43,13 +47,13 @@ def PDF_RowSetColporter(Pdf_name, month, courses, hours, notes):
             }
     PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFile)
 
-def PDF_RowSetAux(Pdf_name, month, courses, hours, notes):
-    PDFNameImput = 'E:/Publicadores/PRECURSORES AUXILIARES/' + Pdf_name + '.pdf'
+def PDF_RowSetAux(root, Pdf_name, month, courses, hours, notes):
+    PDFNameImput = root + '' + Pdf_name + '.pdf'
     PDFNameoutput = 'E:/SF/PRECURSORES AUXILIARES/' + Pdf_name + '.pdf'
 
     month = int(As.AsignMonth(month))
 
-    if notes != "":
+    if notes != None:
         DataFile = {
                 '901_'+ str(month) +'_CheckBox': 'Yes',
                 '902_'+ str(month) +'_Text_C_SanSerif': str(courses),
@@ -65,3 +69,6 @@ def PDF_RowSetAux(Pdf_name, month, courses, hours, notes):
                 '904_'+ str(month) +'_S21_Value': str(hours) ,
          }
     PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFile)
+
+
+
