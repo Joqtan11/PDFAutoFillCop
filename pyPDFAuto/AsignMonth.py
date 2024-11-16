@@ -16,7 +16,7 @@ def AsignMonth (month):
         numMonth = 30
     elif month == 'agosto':
         numMonth = 31
-    elif month == 'septiembre':
+    elif month == 'septiembre' or month == 'setiembre':
         numMonth = 20
     elif month == 'octubre':
         numMonth = 21
