@@ -80,7 +80,7 @@ def ExtractInfo():
     month = month.lower()
     DataFull = DataV.PDF_DataValidationFull(columDataNames, month, columDataPreach, columDataCourses, columDataNotes, starDataNames, endDataNames)
     DataNormal = DataV.PDF_DataValidationNormal(columDataNames, month, columDataPreach, columDataCourses, columDataNotes, starDataNames, endDataNames)
-
+    
     if int(var.get()) == 1:
         if DataNormal == False:
           
@@ -93,8 +93,12 @@ def ExtractInfo():
                 preach = ws[columDataPreach + str(starDataNames)].value
                 courses = ws[columDataCourses + str(starDataNames)].value
                 notes = ws[columDataNotes + str(starDataNames)].value
+                name = name.strip()
+                name = name.replace("-", "")
                 name = str(name.upper())
                 root = str(workbookPath.Publipath)
+                if courses == "" or courses == None:
+                    courses = "0"
                 PS.PDF_RowSetNormal(root,name, month, preach, courses, notes)
                 starDataNames = starDataNames + 1
 
@@ -110,7 +114,11 @@ def ExtractInfo():
                 courses = ws[columDataCourses + str(starDataNames)].value
                 notes = ws[columDataNotes + str(starDataNames)].value
                 hours = ws[columDataPreach + str(starDataNames)].value
+                name = name.strip()
+                name = name.replace("-", "")
                 name = str(name.upper())
+                if courses == "" or courses == None:
+                    courses = "0"
                 root = str(workbookPath.Auxpath)
                 PS.PDF_RowSetAux(root, name, month, courses, hours, notes)
                 starDataNames = starDataNames + 1
@@ -127,7 +135,11 @@ def ExtractInfo():
                 courses = ws[columDataCourses + str(starDataNames)].value
                 notes = ws[columDataNotes + str(starDataNames)].value
                 hours = ws[columDataPreach + str(starDataNames)].value
+                name = name.strip()
+                name = name.replace("-", "")
                 name = str(name.upper())
+                if courses == "" or courses == None:
+                    courses = "0"                
                 root = str(workbookPath.Regpath)
                 PS.PDF_RowSetColporter(root, name, month, courses, hours, notes)
                 starDataNames = starDataNames + 1
