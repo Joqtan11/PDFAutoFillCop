@@ -1,8 +1,20 @@
 import PDFWriter as PDF
 import AsignMonth as As
 
+def normalize(s):
+    replacements = (
+        ("á", "a"),
+        ("é", "e"),
+        ("í", "i"),
+        ("ó", "o"),
+        ("ú", "u"),
+    )
+    for a, b in replacements:
+        s = s.replace(a, b).replace(a.upper(), b.upper())
+    return s
 
 def PDF_RowSetNormal(root, Pdf_name, month, PreachCheck, courses, notes):
+    Pdf_name = normalize(Pdf_name)
     PDFNameImput = root + '' + Pdf_name + '.pdf'
     PDFNameoutput = 'E:/SF/' + Pdf_name + '.pdf'
     if PreachCheck.upper() == 'NO':
@@ -27,6 +39,7 @@ def PDF_RowSetNormal(root, Pdf_name, month, PreachCheck, courses, notes):
     PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFile)
 
 def PDF_RowSetColporter(root, Pdf_name, month, courses, hours, notes):
+    Pdf_name = normalize(Pdf_name)
     PDFNameImput = root  + '' + Pdf_name + '.pdf'
     PDFNameoutput = 'E:/SF/PRECURSORES REGULARES/' + Pdf_name + '.pdf'
 
@@ -48,6 +61,7 @@ def PDF_RowSetColporter(root, Pdf_name, month, courses, hours, notes):
     PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFile)
 
 def PDF_RowSetAux(root, Pdf_name, month, courses, hours, notes):
+    Pdf_name = normalize(Pdf_name)
     PDFNameImput = root + '' + Pdf_name + '.pdf'
     PDFNameoutput = 'E:/SF/PRECURSORES AUXILIARES/' + Pdf_name + '.pdf'
 
