@@ -94,7 +94,7 @@ def ExtractInfo():
                 courses = ws[columDataCourses + str(starDataNames)].value
                 notes = ws[columDataNotes + str(starDataNames)].value
                 name = name.strip()
-                name = name.replace("-", "")
+                name = name.replace("-", " ")
                 name = str(name.upper())
                 root = str(workbookPath.Publipath)
                 if courses == "" or courses == None:
@@ -115,7 +115,7 @@ def ExtractInfo():
                 notes = ws[columDataNotes + str(starDataNames)].value
                 hours = ws[columDataPreach + str(starDataNames)].value
                 name = name.strip()
-                name = name.replace("-", "")
+                name = name.replace("-", " ")
                 name = str(name.upper())
                 if courses == "" or courses == None:
                     courses = "0"
@@ -136,7 +136,7 @@ def ExtractInfo():
                 notes = ws[columDataNotes + str(starDataNames)].value
                 hours = ws[columDataPreach + str(starDataNames)].value
                 name = name.strip()
-                name = name.replace("-", "")
+                name = name.replace("-", " ")
                 name = str(name.upper())
                 if courses == "" or courses == None:
                     courses = "0"                

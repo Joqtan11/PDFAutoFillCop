@@ -3,11 +3,11 @@ import AsignMonth as As
 
 def normalize(s):
     replacements = (
-        ("á", "a"),
-        ("é", "e"),
-        ("í", "i"),
-        ("ó", "o"),
-        ("ú", "u"),
+        ("Á", "A"),
+        ("É", "E"),
+        ("Í", "I"),
+        ("Ó", "O"),
+        ("Ú", "U"),
     )
     for a, b in replacements:
         s = s.replace(a, b).replace(a.upper(), b.upper())
