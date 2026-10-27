@@ -17,7 +17,9 @@ def PDF_RowSetNormal(root, Pdf_name, month, PreachCheck, courses, notes):
     Pdf_name = normalize(Pdf_name)
     PDFNameImput = root + '' + Pdf_name + '.pdf'
     PDFNameoutput = 'E:/SF/' + Pdf_name + '.pdf'
-    if PreachCheck.upper() == 'NO':
+    if not isinstance(PreachCheck, str):
+        PreachCheck = 'Off'
+    elif PreachCheck.upper() == 'NO':
         PreachCheck = 'Off'
     elif PreachCheck.upper() == 'SI':
         PreachCheck = 'Yes' 
@@ -84,5 +86,31 @@ def PDF_RowSetAux(root, Pdf_name, month, courses, hours, notes):
          }
     PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFile)
 
+def PDF_RowSetClear(root, Pdf_name):
+    Pdf_name = normalize(Pdf_name)
+    PDFNameImput = root + '' + Pdf_name + '.pdf'
+    PDFNameoutput = 'E:/SF/' + Pdf_name + '.pdf'
+    PreachCheck = 'Off' 
+    month = int(20)
+
+    while month < 32:
+        DataFile = {
+            '901_'+ str(month) +'_CheckBox': str(PreachCheck),
+            '902_'+ str(month) +'_Text_C_SanSerif': str(0),
+            '905_'+ str(month) +'_Text_SanSerif': " "
+        }
+        PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFile)
+        month = month + 1
+    DataFile = {
+        '900_13_Text_C_SanSerif': str(2027)
+        }
+    PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFile)
+
+        
+         
+
+
+
+   
 
 
