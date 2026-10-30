@@ -32,6 +32,8 @@ def openFile():
     btnprecursorReg.grid(row = 1, column = 2)
     btnExcel= tk.Button(ventana2, text="Excel", command=rootExcel)
     btnExcel.grid(row = 1, column = 3)
+    btnClearAll= tk.Button(ventana2, text="Limpiar todos PDF", command=clearAll)
+    btnClearAll.grid(row = 1, column = 4)
     ventana2.mainloop()
 
 def rootExcel():
@@ -57,12 +59,27 @@ def rootAux():
         FileNotFoundError(print(messagebox.showinfo(message='No selecciono archivo', title='Error')))
 def rootReg():
     try:
-        filepath = filedialog.askdirectory(initialdir="E:/Publicadores/PRECURSORES REGULARES/", title="Abrir ruta Regukares?")
+        filepath = filedialog.askdirectory(initialdir="E:/Publicadores/PRECURSORES REGULARES/", title="Abrir ruta Regulares?")
         print(messagebox.showinfo(message='Ruta seleccionada: '+ filepath, title='info'))
         workbookPath.inputRegpath(filepath)           
     except: 
         FileNotFoundError(print(messagebox.showinfo(message='No selecciono archivo', title='Error')))
-
+def clearAll():
+    wb = openpyxl.load_workbook(str(workbookPath.Excelpath))
+    ws = wb.active
+    columDataNames = txtname.get()
+    columDataNames = columDataNames.upper()
+    starDataNames = int(txtstar.get())
+    endDataNames = int(txtend.get())
+    while starDataNames <= endDataNames:
+        name = ws[columDataNames + str(starDataNames)].value
+        name = name.strip()
+        name = name.replace("-", " ")
+        name = str(name.upper())
+        root = str(workbookPath.Publipath)
+        PS.PDF_RowSetClear(root, name)
+        starDataNames = starDataNames + 1
+  
 def ExtractInfo():
     wb = openpyxl.load_workbook(str(workbookPath.Excelpath))
     ws = wb.active

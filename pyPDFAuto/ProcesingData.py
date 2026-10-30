@@ -90,25 +90,21 @@ def PDF_RowSetClear(root, Pdf_name):
     Pdf_name = normalize(Pdf_name)
     PDFNameImput = root + '' + Pdf_name + '.pdf'
     PDFNameoutput = 'E:/SF/' + Pdf_name + '.pdf'
-    PreachCheck = 'Off' 
     month = int(20)
-
-    while month < 32:
-        DataFile = {
-            '901_'+ str(month) +'_CheckBox': str(PreachCheck),
-            '902_'+ str(month) +'_Text_C_SanSerif': str(0),
-            '905_'+ str(month) +'_Text_SanSerif': " "
-        }
-        PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFile)
-        month = month + 1
-    DataFile = {
+    DataFileFinal = {
         '900_13_Text_C_SanSerif': str(2027)
         }
-    PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFile)
-
-        
-         
-
+    while month < 32:
+        DataFile = {
+                '901_'+ str(month) +'_CheckBox': 'Off',
+                '902_'+ str(month) +'_Text_C_SanSerif': ' ',
+                '903_'+ str(month) +'_CheckBox': 'Off',
+                '904_'+ str(month) +'_S21_Value': ' ' ,
+                '905_'+ str(month) +'_Text_SanSerif': ' '
+        }
+        DataFileFinal.update(DataFile)
+        month = month + 1
+    PDF.write_fillable_pdf(PDFNameImput, PDFNameoutput, DataFileFinal)
 
 
    
